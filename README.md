@@ -17,4 +17,9 @@ From pip:
 
 ## Use
 
+    >>> import pyglassdoor
+    >>> api = pyglassdoor.Api(partner_id= 'glassdoor parter id',
+                             partner_ke= 'glassdoor partner key')
+
+    >>> company = api.get_company('ibm')
    
