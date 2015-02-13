@@ -1,0 +1,19 @@
+#!/usr/bin/python
+#-*- coding: utf-8 -*-
+
+import argparse
+
+import pyglassdoor
+
+parser = argparse.ArgumentParser(description="PyGlassdoor an python implementation to access the Glassdoor API")
+parser.add_argument('partner_id', 'partner_key', 'company',
+                    help="Glassdoor partner id, glassdoor partner key, Name of a company (e.g. ibm)")
+args = parser.parse_args()
+if not args.company or not args.partner_id or not args.partner_key:
+    raise ValueError('No input detected, please enter partner id, partner key, and company name / identifier')
+try:
+    api = pyglassdoor.Api(partner_id=args.partner_id, partner_key=args.partner_key)
+    print api.get_company(args.company)
+except Exception as e:
+    print "Something went wrong, could not get Compnay details for " \
+        "<company:%s>. Traceback: %s" % (args.company, e)
